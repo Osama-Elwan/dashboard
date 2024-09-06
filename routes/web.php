@@ -12,6 +12,8 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function(){
     Route::get('/',HomeController::class)->name('users.home');
     Route::controller(StudentController::class)->group(function(){
-        Route::get('/users','index')->name('admin.users.index');
+        Route::get('/users','index')->name('users.index');
+        Route::get('/users/create','create')->name('users.create');
+        Route::post('/users','store')->name('users.store');
     });
 });
