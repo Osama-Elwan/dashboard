@@ -35,14 +35,8 @@
                   <td>{{ $student->name }}</td>
 
                   <td>
-                    <a href="{{ route('users.show',$student->code) }}" class="btn btn-success">Show</a>
-                    <a href="{{ route('users.edit',$student->code) }}" class="btn btn-primary">Edit</a>
-                    <form action="{{ route('users.destroy',$student->code) }}" method="post" class=" d-inline">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="delete" class="btn btn-danger">
-                    </form>
-                    {{-- <a href="{{ route('users.destroy',$student->code) }}" class="btn btn-danger">Delete</a> --}}
+
+                    <a href="{{ route('users.show',$student->code) }}" class="btn btn-danger">Delete</a>
                   </td>
 
                 </tr>

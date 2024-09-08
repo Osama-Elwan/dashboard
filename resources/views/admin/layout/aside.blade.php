@@ -7,7 +7,7 @@
           <li class="sidebar-item">
             <a
               class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="#"
+              href="{{ route('users.home') }}"
               aria-expanded="false"
               ><i class="mdi mdi-view-dashboard"></i
               ><span class="hide-menu">Home</span></a
@@ -32,6 +32,12 @@
                 <a href="{{ route('users.create') }}" class="sidebar-link"
                   ><i class="mdi mdi-note-plus"></i
                   ><span class="hide-menu"> Add Employee </span></a
+                >
+              </li>
+              <li class="sidebar-item">
+                <a href="{{ route('users.archive') }}" class="sidebar-link"
+                  ><i class="mdi mdi-note-plus"></i
+                  ><span class="hide-menu"> Archive </span></a
                 >
               </li>
             </ul>

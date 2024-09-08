@@ -52,4 +52,13 @@ class StudentController extends Controller
         ]);
         return redirect()->back()->with('msg','Updated successfully');
     }
+    public function destroy($id){
+        Student::destroy($id);
+        return redirect()->back()->with('msg','Deleted successfully');
+
+    }
+    public function archive(){
+        $data = Student::get();
+        return view('admin.students.archive',compact('data'));
+    }
 }
