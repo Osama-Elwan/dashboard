@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'code';
+    protected $fillabel = [
+        'code',
+        'name',
+        'email',
+        'phone',
+        'dept_id'
+    ];
+    public function department(){
+        return $this->belongsTo(Department::class,'dept_id','dept_num');
+    }
 }

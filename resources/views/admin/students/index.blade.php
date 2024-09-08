@@ -21,23 +21,26 @@
             >
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th>Salary</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Department</th>
                 </tr>
               </thead>
               <tbody>
+                
+                @foreach ($data as $student)
+
                 <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
+                  <td>{{ $student->code }}</td>
+                  <td>{{ $student->name }}</td>
+                  <td>{{ $student->email }}</td>
+                  <td>{{ $student->phone }}</td>
+                  <td>{{ $student->dept_id }}</td>
+
                 </tr>
+                @endforeach
 
 
               </tbody>

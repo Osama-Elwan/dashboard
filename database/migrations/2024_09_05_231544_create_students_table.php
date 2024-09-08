@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id('code');
+
+            $table->unsignedInteger('code')->primary();
             $table->string('name',30);
-            $table->string('email',50)->unique();
-            $table->char('phone')->unique()->nullable();
-            //foreign key ->department
-            $table->unsignedBigInteger('dept_id');
+            $table->string('email',255)->unique();
+            $table->char('phone',11)->unique()->nullable();
+            //department
+            $table->unsignedTinyInteger('dept_id');
             $table->foreign('dept_id')->references('dept_num')->on('departments');
-            $table->timestamps();
+            $table->timestamps();//created_at , Updated_at
         });
     }
 
