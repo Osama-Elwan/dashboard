@@ -43,6 +43,13 @@ class StudentController extends Controller
         return view('admin.students.edit',compact('dapartments','student'));
     }
     public function update(StudentRequest $requset , $id){
-        // $student = 
+        $student = Student::findorfail($id);
+        $student->update([
+            'name'=> $requset->name,
+            'email'=> $requset->email,
+            'phone'=> $requset->phone,
+            'dept_id'=> $requset->department,
+        ]);
+        return redirect()->back()->with('msg','Updated successfully');
     }
 }

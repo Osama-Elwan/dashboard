@@ -17,5 +17,6 @@ Route::prefix('admin')->group(function(){
         Route::get('users/{id}','show')->name('users.show');
         Route::post('/users','store')->name('users.store');
         Route::get('users/{id}/edit','edit')->name('users.edit');
+        Route::put('users/{id}','update')->name('users.update');
     });
 });

@@ -19,29 +19,11 @@
         @if (Session::has('msg'))
             <div class="alert alert-success">{{ Session::get('msg') }}</div>
         @endif
-    <form class="form-horizontal" action="{{ route('users.store') }}" method="post">
+    <form class="form-horizontal" action="{{ route('users.update',$student->code) }}" method="post">
         @csrf
+        @method('put')
         <div class="card-body">
-        <div class="form-group row">
-            <label
-            for="ssn"
-            class="col-sm-3 text-end control-label col-form-label "
-            >Code</label
-            >
-            <div class="col-sm-9">
-            <input
-                type="text"
-                class="form-control @error('code') is-invalid @enderror"
-                id="code"
-                placeholder="Code Here"
-                name="code"
-                value="{{ $student->code }}"
-            />
-            @error('code')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-            </div>
-        </div>
+
         <div class="form-group row">
             <label
             for="name"
