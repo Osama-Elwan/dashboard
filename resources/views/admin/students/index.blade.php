@@ -23,21 +23,22 @@
                 <tr>
                     <th>Code</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Department</th>
+                  
                 </tr>
               </thead>
               <tbody>
-                
+
                 @foreach ($data as $student)
 
                 <tr>
                   <td>{{ $student->code }}</td>
                   <td>{{ $student->name }}</td>
-                  <td>{{ $student->email }}</td>
-                  <td>{{ $student->phone }}</td>
-                  <td>{{ $student->dept_id }}</td>
+
+                  <td>
+                    <a href="{{ route('users.show',$student->code) }}" class="btn btn-success">Show</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                  </td>
 
                 </tr>
                 @endforeach

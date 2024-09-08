@@ -9,7 +9,7 @@ class Student extends Model
 {
     use HasFactory;
     protected $primaryKey = 'code';
-    protected $fillabel = [
+    protected $fillable = [
         'code',
         'name',
         'email',

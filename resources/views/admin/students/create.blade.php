@@ -16,39 +16,51 @@
             </ul>
         </alert>
         @endif
+        @if (Session::has('msg'))
+            <div class="alert alert-success">{{ Session::get('msg') }}</div>
+        @endif
     <form class="form-horizontal" action="{{ route('users.store') }}" method="post">
         @csrf
         <div class="card-body">
         <div class="form-group row">
             <label
             for="ssn"
-            class="col-sm-3 text-end control-label col-form-label"
+            class="col-sm-3 text-end control-label col-form-label "
             >Code</label
             >
             <div class="col-sm-9">
             <input
                 type="text"
-                class="form-control"
+                class="form-control @error('code') is-invalid @enderror"
                 id="code"
                 placeholder="Code Here"
                 name="code"
+                value="{{ old('code') }}"
             />
+            @error('code')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             </div>
         </div>
         <div class="form-group row">
             <label
-            for="fname"
-            class="col-sm-3 text-end control-label col-form-label"
+            for="name"
+            class="col-sm-3 text-end control-label col-form-label "
             >Name</label
             >
             <div class="col-sm-9">
             <input
                 type="text"
-                class="form-control"
+                class="form-control @error('name') is-invalid @enderror"
                 id="name"
                 placeholder=" Name Here"
                 name="name"
+                value="{{ old('name') }}"
+
             />
+            @error('name')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             </div>
         </div>
 
@@ -61,11 +73,16 @@
             <div class="col-sm-9">
             <input
                 type="email"
-                class="form-control"
+                class="form-control @error('email') is-invalid @enderror"
                 id="email"
                 placeholder="Email Here"
                 name="email"
+                value="{{ old('email') }}"
+
             />
+            @error('email')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             </div>
         </div>
         <div class="form-group row">
@@ -77,11 +94,16 @@
             <div class="col-sm-9">
             <input
                 type="text"
-                class="form-control"
+                class="form-control @error('phone') is-invalid @enderror"
                 id="phone"
                 placeholder="Phone Here"
                 name="phone"
+                value="{{ old('phone') }}"
+
             />
+            @error('phone')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
             </div>
         </div>
 
@@ -94,7 +116,10 @@
             >
             <div class="col-sm-9">
             <select class="form-control" name="department">
-                <option value=""></option>
+                @foreach ($dapartments as $dapartment)
+
+                <option value="{{ $dapartment->dept_num }}">{{ $dapartment->dept_name }}</option>
+                @endforeach
             </select>
             </div>
         </div>

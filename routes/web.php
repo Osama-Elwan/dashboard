@@ -14,6 +14,7 @@ Route::prefix('admin')->group(function(){
     Route::controller(StudentController::class)->group(function(){
         Route::get('/users','index')->name('users.index');
         Route::get('/users/create','create')->name('users.create');
+        Route::get('users/{id}','show')->name('users.show');
         Route::post('/users','store')->name('users.store');
     });
 });

@@ -27,7 +27,7 @@ class StudentRequest extends FormRequest
             'code'=>['required','integer','unique:students,code'],
             'name'=>['required','alpha_dash'],
             'email'=>['required','email'],
-            'email'=>['nullable','regex:/^(010|011|015|012)[0-9]{8}$/'],
+            'phone'=>['nullable','regex:/^(010|011|015|012)[0-9]{8}$/'],
             'department'=>['integer']
         ];
     }

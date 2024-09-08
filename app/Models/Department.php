@@ -11,7 +11,7 @@ class Department extends Model
     protected $primaryKey = 'dept_num';
     protected $fillabel =[
         'dept_num',
-        'name'
+        'dept_name'
     ];
     public function students(){
         return $this->hasMany(Student::class,'dept_id','dept_num');
