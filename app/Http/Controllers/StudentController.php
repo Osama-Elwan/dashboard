@@ -36,4 +36,13 @@ class StudentController extends Controller
         $student = Student::findorfail($id);
         return view('admin.students.show',compact('student'));
     }
+
+    public function edit($id){
+        $student = Student::findorfail($id);
+        $dapartments = Department::get();
+        return view('admin.students.edit',compact('dapartments','student'));
+    }
+    public function update(StudentRequest $requset , $id){
+        // $student = 
+    }
 }

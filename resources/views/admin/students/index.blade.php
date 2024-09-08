@@ -23,7 +23,7 @@
                 <tr>
                     <th>Code</th>
                     <th>Name</th>
-                  
+
                 </tr>
               </thead>
               <tbody>
@@ -36,8 +36,8 @@
 
                   <td>
                     <a href="{{ route('users.show',$student->code) }}" class="btn btn-success">Show</a>
-                    <a href="#" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <a href="{{ route('users.edit',$student->code) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('users.show',$student->code) }}" class="btn btn-danger">Delete</a>
                   </td>
 
                 </tr>
