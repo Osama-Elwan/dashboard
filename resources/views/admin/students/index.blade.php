@@ -13,6 +13,9 @@
     <div class="col-12">
     <div class="card">
         <div class="card-body">
+            @if (Session::has('msg'))
+            <div class="alert alert-success">{{ Session::get('msg') }}</div>
+        @endif
           <h5 class="card-title">Basic Datatable</h5>
           <div class="table-responsive">
             <table

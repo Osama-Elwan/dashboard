@@ -20,5 +20,7 @@ Route::prefix('admin')->group(function(){
         Route::get('users/{id}/edit','edit')->name('users.edit');
         Route::put('users/{id}','update')->name('users.update');
         Route::delete('/users/{id}','destroy')->name('users.destroy');
+        Route::delete('/users/{id}/delete','forceDelete')->name('users.forceDelete');
+        Route::post('/users/{id}/restore','restore')->name('users.restore');
     });
 });

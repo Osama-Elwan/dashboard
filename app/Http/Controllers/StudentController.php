@@ -58,7 +58,25 @@ class StudentController extends Controller
 
     }
     public function archive(){
-        $data = Student::get();
+        $data = Student::onlyTrashed()->get();
         return view('admin.students.archive',compact('data'));
+    }
+    public function forceDelete($id){
+        // $student= Student::withTrashed()
+        // ->where('code',$id)->get();
+        // ;
+        $student= Student::withTrashed()
+        ->where('code',$id);
+        $student->forceDelete();
+        ;
+        return redirect()->back()->with('msg','Deleted successfully');
+    }
+    public function restore($id){
+        $student= Student::withTrashed()
+        ->where('code',$id);
+        $student->restore();
+        ;
+        return redirect()->route('users.index')->with('msg','Restored  successfully');
+
     }
 }
