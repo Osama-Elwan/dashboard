@@ -19,7 +19,7 @@
               id="zero_config"
               class="table table-striped table-bordered"
             >
-              <thead>
+              {{-- <thead>
                 <tr>
                     <th>Code</th>
                     <th>Name</th>
@@ -27,21 +27,40 @@
                     <th>Phone</th>
                     <th>Department</th>
                 </tr>
-              </thead>
+              </thead> --}}
               <tbody>
 
 
 
                 <tr>
-                  <td>{{ $student->code }}</td>
-                  <td>{{ $student->name }}</td>
-                  <td>{{ $student->email }}</td>
-                  <td>{{ $student->phone }}</td>
-                  <td>{{  $student->department->dept_name; }}</td>
-
-
+                    <th>code</th>
+                    <td>{{ $student->code }}</td>
                 </tr>
-                
+                <tr>
+                    <th>Name</th>
+                    <td>{{ $student->name }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ $student->email }}</td>
+                </tr>
+                <tr>
+                    <th>Phone</th>
+                    <td>{{ $student->phone }}</td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td>{{  $student->department->dept_name; }}</td>
+                </tr>
+                <tr>
+                    <th>Tablet</th>
+                    <td>{{  $student->tablet->tablet_name; }}</td>
+                </tr>
+
+
+
+
+
 
 
               </tbody>

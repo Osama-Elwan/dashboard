@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
 use App\Models\Department;
 use App\Models\Student;
+use App\Models\Tablet;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     public function index(){
         $data = Student::get();
-
+        
         return view('admin.students.index',compact('data'));
     }
 
@@ -34,6 +35,7 @@ class StudentController extends Controller
 
     public function show($id){
         $student = Student::findorfail($id);
+        // return $student->tablet;
         return view('admin.students.show',compact('student'));
     }
 

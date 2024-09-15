@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartmentContoller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function(){
     Route::get('/',HomeController::class)->name('users.home');
+    Route::get('/department/{id}',[DepartmentContoller::class,'show']);
     Route::controller(StudentController::class)->group(function(){
         Route::get('/users','index')->name('users.index');
         Route::get('/users/create','create')->name('users.create');
@@ -22,5 +24,6 @@ Route::prefix('admin')->group(function(){
         Route::delete('/users/{id}','destroy')->name('users.destroy');
         Route::delete('/users/{id}/delete','forceDelete')->name('users.forceDelete');
         Route::post('/users/{id}/restore','restore')->name('users.restore');
+
     });
 });
