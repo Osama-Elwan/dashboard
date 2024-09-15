@@ -12,7 +12,7 @@ class StudentController extends Controller
 {
     public function index(){
         $data = Student::get();
-        
+
         return view('admin.students.index',compact('data'));
     }
 
@@ -23,18 +23,27 @@ class StudentController extends Controller
     }
 
     public function store(StudentRequest $requset){
+        // return $requset->file('photo');//tmp_name
+        // return $requset->file('photo')->getClientOriginalName(); //name
+        // return $requset->file('photo')->getClientOriginalExtension(); //Extention
+
+        $photo=$requset->file('photo')->storeAs('uploads',$requset->file('photo')->getClientOriginalName());
+
+
         Student::create([
             'code'=> $requset->code,
             'name'=> $requset->name,
             'email'=> $requset->email,
             'phone'=> $requset->phone,
             'dept_id'=> $requset->department,
+            'photo'=> $photo,
         ]);
         return redirect()->back()->with('msg','added successfully');
     }
 
     public function show($id){
         $student = Student::findorfail($id);
+        // dd($student->photo);
         // return $student->tablet;
         return view('admin.students.show',compact('student'));
     }
@@ -69,6 +78,7 @@ class StudentController extends Controller
         // ;
         $student= Student::withTrashed()
         ->where('code',$id);
+        // if(!empty())
         $student->forceDelete();
         ;
         return redirect()->back()->with('msg','Deleted successfully');

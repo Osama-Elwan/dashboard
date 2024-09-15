@@ -33,6 +33,10 @@
 
 
                 <tr>
+                    <th>Photo</th>
+                    <td><img src="{{ asset('storage/'. $student->photo) }}" alt="" width="70"></td>
+                </tr>
+                <tr>
                     <th>code</th>
                     <td>{{ $student->code }}</td>
                 </tr>

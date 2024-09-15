@@ -17,7 +17,8 @@ class Student extends Model
         'name',
         'email',
         'phone',
-        'dept_id'
+        'dept_id',
+        'photo'
     ];
     public function department(){
         return $this->belongsTo(Department::class,'dept_id','dept_num')->withDefault(['dept_name'=>'unknown']);

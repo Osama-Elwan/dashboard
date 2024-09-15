@@ -19,7 +19,7 @@
         @if (Session::has('msg'))
             <div class="alert alert-success">{{ Session::get('msg') }}</div>
         @endif
-    <form class="form-horizontal" action="{{ route('users.store') }}" method="post">
+    <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('users.store') }}" method="post" >
         @csrf
         <div class="card-body">
         <div class="form-group row">
@@ -106,6 +106,32 @@
             @enderror
             </div>
         </div>
+
+
+        <div class="form-group row">
+            <label
+            for="phone"
+            class="col-sm-3 text-end control-label col-form-label"
+            >Photo</label
+            >
+            <div class="col-sm-9">
+            <input
+                type="file"
+                class="form-control @error('phone') is-invalid @enderror"
+                id="photo"
+
+                name="photo"
+                value="{{ old('photo') }}"
+
+            />
+            @error('photo')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+            </div>
+        </div>
+
+
+
 
 
         <div class="form-group row">

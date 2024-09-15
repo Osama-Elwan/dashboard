@@ -28,7 +28,8 @@ class StudentRequest extends FormRequest
             'name'=>['required','alpha_dash'],
             'email'=>['required','email'],
             'phone'=>['nullable','regex:/^(010|011|015|012)[0-9]{8}$/'],
-            'department'=>['integer']
+            'department'=>['integer'],
+            'phote'=>['image']
         ];
     }
 
