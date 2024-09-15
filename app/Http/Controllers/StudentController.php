@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Student;
 use App\Models\Tablet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -72,17 +73,53 @@ class StudentController extends Controller
         $data = Student::onlyTrashed()->get();
         return view('admin.students.archive',compact('data'));
     }
-    public function forceDelete($id){
-        // $student= Student::withTrashed()
-        // ->where('code',$id)->get();
-        // ;
-        $student= Student::withTrashed()
-        ->where('code',$id);
-        // if(!empty())
-        $student->forceDelete();
-        ;
-        return redirect()->back()->with('msg','Deleted successfully');
+    // public function forceDelete($id){
+    //     // $student= Student::withTrashed()
+    //     // ->where('code',$id)->get();
+    //     // ;
+    //     $student= Student::withTrashed()
+    //     ->where('code',$id);
+    //     if(!empty($student->photo) && Storage::exists($student->photo)){
+    //         Storage::delete($student->photo);
+    //         if(Storage::files('uploads')){
+    //             Storage::deleteDirectory('uploads');
+    //         }
+    //     }
+    //     $student->forceDelete();
+    //     ;
+    //     return redirect()->back()->with('msg','Deleted successfully');
+    // }
+
+    public function forceDelete($id)
+    {
+        // Retrieve the student record with trashed entries
+        $student = Student::withTrashed()->where('code', $id)->first();
+        
+        if ($student) {
+
+            if (!empty($student->photo) && Storage::exists($student->photo)) {
+                Storage::delete($student->photo);
+            }
+
+            // Check if there are any files in the 'uploads' directory and delete the directory if it's empty
+            if (Storage::exists('uploads') && empty(Storage::files('uploads'))) {
+                Storage::deleteDirectory('uploads');
+            }
+
+
+            $student->forceDelete();
+
+
+            return redirect()->back()->with('msg', 'Deleted successfully');
+        }
+
+        // Return an error message if the student was not found
+        return redirect()->back()->with('error', 'Student not found.');
     }
+
+
+
+
     public function restore($id){
         $student= Student::withTrashed()
         ->where('code',$id);
