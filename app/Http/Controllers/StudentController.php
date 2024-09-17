@@ -28,18 +28,32 @@ class StudentController extends Controller
         // return $requset->file('photo')->getClientOriginalName(); //name
         // return $requset->file('photo')->getClientOriginalExtension(); //Extention
 
-        $photo=$requset->file('photo')->storeAs('uploads',$requset->file('photo')->getClientOriginalName());
 
+        //     $photo=$requset->file('photo')->storeAs('uploads',$requset->file('photo')->getClientOriginalName());
 
-        Student::create([
-            'code'=> $requset->code,
-            'name'=> $requset->name,
-            'email'=> $requset->email,
-            'phone'=> $requset->phone,
-            'dept_id'=> $requset->department,
-            'photo'=> $photo,
-        ]);
+        // Student::create([
+        //     'code'=> $requset->code,
+        //     'name'=> $requset->name,
+        //     'email'=> $requset->email,
+        //     'phone'=> $requset->phone,
+        //     'dept_id'=> $requset->dept_id,
+        //     'photo'=> $photo,
+        // ]);
+        // return redirect()->back()->with('msg','added successfully');
+        $data =$requset->validated();
+        if(!empty($requset->photo)){
+        $file= $requset->file('photo');
+        $photoExt = $file->getClientOriginalExtension();
+        $photoName = $requset->code.'.'. $photoExt;
+        $photo = $file->storeAs('uploads',$photoName);
+        $data['photo']=$photo;
+
+        }
+        // dd($data);
+
+        Student::create($data);
         return redirect()->back()->with('msg','added successfully');
+
     }
 
     public function show($id){
@@ -60,7 +74,7 @@ class StudentController extends Controller
             'name'=> $requset->name,
             'email'=> $requset->email,
             'phone'=> $requset->phone,
-            'dept_id'=> $requset->department,
+            'dept_id'=> $requset->dept_id,
         ]);
         return redirect()->back()->with('msg','Updated successfully');
     }
@@ -94,7 +108,7 @@ class StudentController extends Controller
     {
         // Retrieve the student record with trashed entries
         $student = Student::withTrashed()->where('code', $id)->first();
-        
+
         if ($student) {
 
             if (!empty($student->photo) && Storage::exists($student->photo)) {

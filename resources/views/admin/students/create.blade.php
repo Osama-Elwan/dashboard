@@ -19,6 +19,9 @@
         @if (Session::has('msg'))
             <div class="alert alert-success">{{ Session::get('msg') }}</div>
         @endif
+        {{-- @if (Session::has('error'))
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+        @endif --}}
     <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('users.store') }}" method="post" >
         @csrf
         <div class="card-body">
@@ -117,7 +120,7 @@
             <div class="col-sm-9">
             <input
                 type="file"
-                class="form-control @error('phone') is-invalid @enderror"
+                class="form-control @error('photo') is-invalid @enderror"
                 id="photo"
 
                 name="photo"
@@ -141,7 +144,7 @@
             >Department</label
             >
             <div class="col-sm-9">
-            <select class="form-control" name="department">
+            <select class="form-control" name="dept_id">
                 @foreach ($dapartments as $dapartment)
 
                 <option value="{{ $dapartment->dept_num }}">{{ $dapartment->dept_name }}</option>
