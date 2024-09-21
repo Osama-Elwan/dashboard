@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StudentRequest;
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Student;
 use App\Models\Tablet;
@@ -57,10 +58,12 @@ class StudentController extends Controller
     }
 
     public function show($id){
+        $courses=Course::get();
         $student = Student::findorfail($id);
+        // return $student->courses;
         // dd($student->photo);
         // return $student->tablet;
-        return view('admin.students.show',compact('student'));
+        return view('admin.students.show',compact('student','courses'));
     }
 
     public function edit($id){
@@ -141,5 +144,14 @@ class StudentController extends Controller
         ;
         return redirect()->route('users.index')->with('msg','Restored  successfully');
 
+    }
+
+
+    public function addCourses(Request $request,$id){
+        $student =Student::findorfail($id);
+        // $student->courses()->attach($request->courses);
+        // $student->courses()->sync($request->courses);
+        $student->courses()->syncWithoutDetaching($request->courses);
+        return redirect()->back();
     }
 }

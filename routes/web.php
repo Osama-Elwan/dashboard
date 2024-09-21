@@ -5,9 +5,19 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login',function(){
+    return view('auth.login');
+})->name('login');
+Route::get('/register',function(){
+    return view('auth.register');
+})->name('register');
+
+Route::get('/',function(){
+    return view('site.index');
+})->name('site.index');
+Route::get('/about',function(){
+    return view('site.about');
+})->name('site.about');
 
 
 Route::prefix('admin')->group(function(){
@@ -24,6 +34,7 @@ Route::prefix('admin')->group(function(){
         Route::delete('/users/{id}','destroy')->name('users.destroy');
         Route::delete('/users/{id}/delete','forceDelete')->name('users.forceDelete');
         Route::post('/users/{id}/restore','restore')->name('users.restore');
+        Route::post('/users/{id}/courses','addCourses')->name('users.addCourses');
 
     });
 });
