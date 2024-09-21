@@ -1,20 +1,21 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\DepartmentContoller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login',function(){
-    return view('auth.login');
-})->name('login');
-Route::get('/register',function(){
-    return view('auth.register');
-})->name('register');
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::get('/register',[AuthController::class,'register'])->name('register');
+Route::post('/handleRegister',[AuthController::class,'handleRegister'])->name('handleRegister');
+Route::post('/handleLogin',[AuthController::class,'handleLogin'])->name('handleLogin');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('/',function(){
     return view('site.index');
 })->name('site.index');
+
 Route::get('/about',function(){
     return view('site.about');
 })->name('site.about');
