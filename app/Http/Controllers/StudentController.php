@@ -8,11 +8,27 @@ use App\Models\Department;
 use App\Models\Student;
 use App\Models\Tablet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+//test
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 class StudentController extends Controller
+// implements \Illuminate\Routing\Controllers\HasMiddleware
 {
+
+//     public static function middleware(): array
+// {
+//     return [
+//         new Middleware(middleware: 'isAdmin'),
+//     ];
+// }
+
     public function index(){
+        // if(Auth::user()->role != 'admin'){
+            // return redirect()->route('login');
+        // }
         $data = Student::get();
 
         return view('admin.students.index',compact('data'));
