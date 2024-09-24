@@ -5,10 +5,8 @@
 <div class="row">
 <div class="col-md-12">
     <div class="card">
-       
-        {{-- @if (Session::has('error'))
-            <div class="alert alert-danger">{{ Session::get('error') }}</div>
-        @endif --}}
+       {{-- show messeges --}}
+        <x-show-messages></x-show-messages>
     <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('users.store') }}" method="post" >
         @csrf
         <div class="card-body">

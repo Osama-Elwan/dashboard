@@ -4,21 +4,8 @@
 
 <div class="row">
 <div class="col-md-12">
-    <div class="card">
-        @if ($errors->any())
-
-        <alert class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </alert>
-        @endif
-        @if (Session::has('msg'))
-            <div class="alert alert-success">{{ Session::get('msg') }}</div>
-        @endif
+    {{-- show messeges --}}
+    <x-show-messages></x-show-messages>
     <form class="form-horizontal" action="{{ route('users.update',$student->code) }}" method="post">
         @csrf
         @method('put')
