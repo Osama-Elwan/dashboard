@@ -3,12 +3,21 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Facades\Route;
+
 // dump('step2');
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
+        // admin: __DIR__.'/../routes/admin.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+        then: function () {
+            Route::middleware('web')
+                ->prefix('admin')
+                // ->name('admin.')
+                ->group(base_path('routes/admin.php'));
+        },
     )
     ->withMiddleware(function (Middleware $middleware) {
         // $middleware->use([ //public middleware run automatically when u use route //can modify this delete or add wihtin this scope use it to add or delete (u should get all to avoid over ride)
